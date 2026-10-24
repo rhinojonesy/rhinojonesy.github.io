@@ -1,0 +1,46 @@
+# ==============================================================================
+# PLACEHOLDER ASSETS REPLACED WITH HAND-MADE ART
+# ==============================================================================
+# Each category tracks how many placeholder assets have been replaced with
+# final hand-made pixel art, UI, sound effects or music.
+#
+#   name: Category title
+#   replaced: Number of hand-made assets finished
+#   total: Total assets needed in this category (can be 0 while you are still counting)
+#   note: Short description shown under the progress bar
+
+categories:
+  - name: "Characters"
+    replaced: 0
+    total: 0
+    note: "Player sprites, hair styles, Jo, townsfolk and museum visitors."
+
+  - name: "Buildings"
+    replaced: 0
+    total: 0
+    note: "The museum, your cottage, the prep lab, the bookshop and town buildings."
+
+  - name: "Plants and ground"
+    replaced: 0
+    total: 0
+    note: "Trees, garden crops, rock strata, riverbanks and seasonal foliage."
+
+  - name: "Props"
+    replaced: 0
+    total: 0
+    note: "Display cases, fossil specimens, cottage furniture, dig tools and signs."
+
+  - name: "UI"
+    replaced: 0
+    total: 0
+    note: "Field journal pages, quality stars, menus, map icons and controller prompts."
+
+  - name: "Sounds"
+    replaced: 0
+    total: 0
+    note: "Pickaxe strikes, soft brush strokes, river water, footsteps and weather."
+
+  - name: "Music"
+    replaced: 0
+    total: 0
+    note: "Cosy seasonal town themes, quiet field ambiences and museum melodies."

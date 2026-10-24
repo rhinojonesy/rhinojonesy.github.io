@@ -1,0 +1,107 @@
+{% comment %}
+  The top of every page is a little scene: Katie walks between signposts,
+  and each signpost is a link to a page. Walk with the arrow keys (or A and D),
+  or tap the ground. The plain menu below it is for phones.
+{% endcomment %}
+{% assign here = "home" %}
+{% if page.url contains '/devlog' or page.layout == 'post' %}{% assign here = "devlog" %}
+{% elsif page.url contains '/roadmap' %}{% assign here = "roadmap" %}
+{% elsif page.url contains '/builds' %}{% assign here = "builds" %}
+{% elsif page.url contains '/art' %}{% assign here = "art" %}
+{% elsif page.url contains '/gallery' %}{% assign here = "gallery" %}
+{% elsif page.url contains '/about' %}{% assign here = "about" %}
+{% endif %}
+
+<header class="site-header">
+  <div class="scene" id="scene" data-here="{{ here }}">
+    <div class="scene-sky" aria-hidden="true">
+      <span class="scene-orb"></span>
+      <span class="scene-stars"></span>
+      <span class="scene-cloud scene-cloud-1"></span>
+      <span class="scene-cloud scene-cloud-2"></span>
+      <span class="scene-cloud scene-cloud-3"></span>
+      <span class="scene-hills scene-hills-back"></span>
+    </div>
+
+    <div class="scene-world" id="scene-world">
+      <span class="scene-hills scene-hills-front" aria-hidden="true"></span>
+      <span class="scene-ground" aria-hidden="true"></span>
+      <span class="scene-dig" aria-hidden="true"><span class="scene-bone"></span></span>
+
+      <nav class="scene-signs" aria-label="Signposts to each page">
+        <a class="signpost sign-pink{% if here == 'home' %} is-here{% endif %}" style="--p: 0" href="{{ '/' | relative_url }}" data-sign="home"><span class="sign-board">Home</span><span class="sign-post"></span></a>
+        <a class="signpost sign-mint{% if here == 'devlog' %} is-here{% endif %}" style="--p: 0.1667" href="{{ '/devlog/' | relative_url }}" data-sign="devlog"><span class="sign-board">Dev Log</span><span class="sign-post"></span></a>
+        <a class="signpost sign-peach{% if here == 'roadmap' %} is-here{% endif %}" style="--p: 0.3333" href="{{ '/roadmap/' | relative_url }}" data-sign="roadmap"><span class="sign-board">Roadmap</span><span class="sign-post"></span></a>
+        <a class="signpost sign-lilac{% if here == 'builds' %} is-here{% endif %}" style="--p: 0.5" href="{{ '/builds/' | relative_url }}" data-sign="builds"><span class="sign-board">Builds</span><span class="sign-post"></span></a>
+        <a class="signpost sign-butter{% if here == 'art' %} is-here{% endif %}" style="--p: 0.6667" href="{{ '/art/' | relative_url }}" data-sign="art"><span class="sign-board">Art</span><span class="sign-post"></span></a>
+        <a class="signpost sign-sky{% if here == 'gallery' %} is-here{% endif %}" style="--p: 0.8333" href="{{ '/gallery/' | relative_url }}" data-sign="gallery"><span class="sign-board">Gallery</span><span class="sign-post"></span></a>
+        <a class="signpost sign-pink{% if here == 'about' %} is-here{% endif %}" style="--p: 1" href="{{ '/about/' | relative_url }}" data-sign="about"><span class="sign-board">About</span><span class="sign-post"></span></a>
+      </nav>
+
+      <div class="katie" id="katie" aria-hidden="true">
+        <span class="katie-bubble" id="katie-bubble"></span>
+        <span class="katie-shadow"></span>
+        <span class="katie-sprite" id="katie-sprite"></span>
+      </div>
+    </div>
+
+    <div class="scene-top">
+      <div class="brand-block">
+        <div class="brand-eyebrow">Dev journal</div>
+        <a class="brand-title" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+        {% if site.pitch and site.pitch != "" and page.url != "/" %}
+          <p class="brand-pitch">{{ site.pitch | escape }}</p>
+        {% endif %}
+      </div>
+
+      <div class="header-stamps">
+        {% if site.current_version and site.current_version != "" %}
+          <div class="rubber-stamp-box" aria-label="Current playtest build">
+            <span class="stamp-kicker">Current build</span>
+            <strong class="stamp-version">v{{ site.current_version | escape }}</strong>
+            {% if site.current_version_date and site.current_version_date != "" %}
+              <span class="stamp-date">{{ site.current_version_date | escape }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="header-actions">
+          <button
+            type="button"
+            id="theme-toggle"
+            class="btn-journal btn-small btn-theme-toggle"
+            aria-pressed="false"
+            aria-label="Switch between the day and night look"
+          >
+            <span class="theme-indicator" aria-hidden="true"></span>
+            <span id="theme-toggle-text">Night</span>
+          </button>
+
+          <button
+            type="button"
+            id="menu-toggle"
+            class="btn-journal btn-small btn-menu-toggle"
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="scene-hint" id="scene-hint" hidden></p>
+  </div>
+
+  <nav id="site-nav" class="site-nav" aria-label="Main menu">
+    <ul class="nav-list">
+      <li><a class="nav-link{% if here == 'home' %} is-active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a class="nav-link{% if here == 'devlog' %} is-active{% endif %}" href="{{ '/devlog/' | relative_url }}">Dev Log</a></li>
+      <li><a class="nav-link{% if here == 'roadmap' %} is-active{% endif %}" href="{{ '/roadmap/' | relative_url }}">Roadmap</a></li>
+      <li><a class="nav-link{% if here == 'builds' %} is-active{% endif %}" href="{{ '/builds/' | relative_url }}">Builds</a></li>
+      <li><a class="nav-link{% if here == 'art' %} is-active{% endif %}" href="{{ '/art/' | relative_url }}">Art</a></li>
+      <li><a class="nav-link{% if here == 'gallery' %} is-active{% endif %}" href="{{ '/gallery/' | relative_url }}">Gallery</a></li>
+      <li><a class="nav-link{% if here == 'about' %} is-active{% endif %}" href="{{ '/about/' | relative_url }}">About</a></li>
+    </ul>
+  </nav>
+</header>

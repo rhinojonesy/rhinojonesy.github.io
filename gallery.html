@@ -1,0 +1,102 @@
+---
+layout: default
+title: Gallery
+summary: Screenshots and video clips from Project Paleo development builds.
+---
+{% assign gallery_items = site.data.gallery.items %}
+
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Field Photographs &amp; Clips</span>
+      <h1 class="page-title">Gallery</h1>
+      <p class="page-intro">
+        Screenshots taped into the field journal and video clips from recent builds. YouTube videos play through privacy-enhanced embeds, while TikTok and Instagram clips open directly as simple links.
+      </p>
+    </div>
+  </div>
+
+  {% if gallery_items and gallery_items.size > 0 %}
+    <div class="gallery-grid">
+      {% for item in gallery_items %}
+        <article class="gallery-card paper-subpanel">
+          {% if item.video_url and item.video_url != "" %}
+            {% assign vurl = item.video_url %}
+            {% assign is_youtube = false %}
+            {% assign yt_id = "" %}
+
+            {% if vurl contains "youtube.com/watch?v=" %}
+              {% assign is_youtube = true %}
+              {% assign yt_parts = vurl | split: "v=" %}
+              {% assign yt_id = yt_parts[1] | split: "&" | first %}
+            {% elsif vurl contains "youtu.be/" %}
+              {% assign is_youtube = true %}
+              {% assign yt_parts = vurl | split: "youtu.be/" %}
+              {% assign yt_id = yt_parts[1] | split: "?" | first %}
+            {% elsif vurl contains "youtube-nocookie.com/embed/" %}
+              {% assign is_youtube = true %}
+              {% assign yt_parts = vurl | split: "embed/" %}
+              {% assign yt_id = yt_parts[1] | split: "?" | first %}
+            {% endif %}
+
+            {% if is_youtube and yt_id != "" %}
+              <div class="video-frame">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/{{ yt_id | escape }}"
+                  title="{{ item.caption | escape }}"
+                  loading="lazy"
+                  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            {% else %}
+              <div class="external-video-card">
+                <span class="external-video-badge">
+                  {% if vurl contains "tiktok.com" %}
+                    TikTok Video Clip
+                  {% elsif vurl contains "instagram.com" %}
+                    Instagram Video Clip
+                  {% else %}
+                    External Video Clip
+                  {% endif %}
+                </span>
+                <p class="external-video-note">
+                  We do not load third-party social trackers on this site. Follow the link below to watch this clip.
+                </p>
+                <a class="btn-journal btn-small" href="{{ vurl | escape }}" rel="noopener noreferrer">
+                  Watch video clip
+                </a>
+              </div>
+            {% endif %}
+          {% elsif item.image and item.image != "" %}
+            <figure class="photo-frame gallery-photo-frame">
+              <span class="tape tape-tl" aria-hidden="true"></span>
+              <span class="tape tape-tr" aria-hidden="true"></span>
+              <span class="tape tape-bl" aria-hidden="true"></span>
+              <span class="tape tape-br" aria-hidden="true"></span>
+              <img
+                src="{{ item.image | relative_url }}"
+                alt="{{ item.caption | escape }}"
+                loading="lazy"
+                onerror="this.parentElement.classList.add('is-missing');"
+              >
+              <div class="photo-fallback" aria-label="Field sketch placeholder: photo to come">
+                <span class="photo-fallback-stamp">Photo To Come</span>
+                <span class="photo-fallback-note">Upload a screenshot to {{ item.image | escape }}</span>
+              </div>
+            </figure>
+          {% endif %}
+
+          <div class="gallery-card-body">
+            <p class="gallery-caption">{{ item.caption | escape }}</p>
+            {% if item.date and item.date != "" %}
+              <span class="rubber-stamp-inline">{{ item.date | escape }}</span>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-notice">No screenshots or videos have been added to the gallery yet.</p>
+  {% endif %}
+</section>

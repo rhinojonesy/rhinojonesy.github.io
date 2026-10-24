@@ -1,0 +1,118 @@
+# ==============================================================================
+# ROCK STRATA ROADMAP DATA
+# ==============================================================================
+# Each item has:
+#   title: Short name of the feature or milestone (put in quotes "")
+#   line: One short sentence explaining it (put in quotes "")
+#   status: Must be one of: planned, digging, done
+#     - planned = Top layers (Fair muted colour)
+#     - digging = Active middle trench being dug now (Excellent gold colour)
+#     - done    = Deep settled bedrock layers at the bottom (Pristine sea-glass)
+#   percent: Optional number from 0 to 100. Leave out or delete the line if not needed.
+#
+# YAML TIP: Keep the two-space indentation exact, and always wrap text in
+# double quotes ("") if it contains a colon (:).
+
+items:
+  # --- PLANNED (TOP LAYERS) ---
+  - title: "Quest lines for every region"
+    line: "Dedicated story quests and fossil mysteries across all nine regions."
+    status: planned
+
+  - title: "Friendship stories for the townsfolk"
+    line: "Closer friendships and personal storylines as you get to know your neighbours."
+    status: planned
+
+  - title: "Museum visitors who talk about your exhibits"
+    line: "Townsfolk and travellers browsing your halls and sharing thoughts on your displays."
+    status: planned
+
+  - title: "A yearly event in each region"
+    line: "Seasonal festivals and local gatherings on the calendar for every region."
+    status: planned
+
+  - title: "Extra rooms for the cottage"
+    line: "Home extensions so you have more space for furniture, trophies and cosy corners."
+    status: planned
+
+  - title: "A cat"
+    line: "A friendly companion to curl up by the hearth and greet you at your cottage."
+    status: planned
+
+  - title: "A local-history collection for the museum"
+    line: "Special wings for regional curiosities and town heritage alongside your fossils."
+    status: planned
+
+  - title: "Steam achievements, a leaderboard of rarest finds and a photo mode"
+    line: "Extra ways to record your best discoveries and frame snapshots of your museum."
+    status: planned
+
+  - title: "Early Access on Steam"
+    line: "Opening the doors to the wider fossil-hunting community on Steam."
+    status: planned
+
+  # --- DIGGING NOW (ACTIVE MIDDLE TRENCH) ---
+  - title: "Polishing the first two hours from playtest feedback"
+    line: "Smoothing out pacing, hints, controls and menus based on notes from early players."
+    status: digging
+    percent: 45
+
+  - title: "Replacing placeholder assets with hand-made art"
+    line: "Swapping stand-in sprites, UI pieces and audio for final hand-made pixel art and sound."
+    status: digging
+
+  # --- DONE (DEEP SETTLED LAYERS AT THE BOTTOM) ---
+  - title: "Digging and brushing"
+    line: "Excavating rock layers in the field and carefully brushing fossils free."
+    status: done
+    percent: 100
+
+  - title: "The fossil journal"
+    line: "A field guide that records real prehistoric species and the quality grade of your finds."
+    status: done
+    percent: 100
+
+  - title: "The museum builder"
+    line: "Saving up for a plot, placing display cases and organising your own town museum."
+    status: done
+    percent: 100
+
+  - title: "The prep lab"
+    line: "A dedicated workbench for cleaning and preparing specimens before display."
+    status: done
+    percent: 100
+
+  - title: "Travel by bus, train, ferry and plane"
+    line: "Ticketed transport routes connecting small country stops, ports and distant dig sites."
+    status: done
+    percent: 100
+
+  - title: "A world of nine regions"
+    line: "Nine distinct regions to visit, each with its own scenery and prehistoric beds."
+    status: done
+    percent: 100
+
+  - title: "Gold panning"
+    line: "Standing by the riverbanks with a pan to wash gravel and spot glinting flakes of gold."
+    status: done
+    percent: 100
+
+  - title: "The cottage and garden"
+    line: "A place of your own to furnish indoors and plant up with flowers and crops outside."
+    status: done
+    percent: 100
+
+  - title: "Seasons and weather"
+    line: "Winter snow, autumn colours, spring blossom, summer sun and shifting weather."
+    status: done
+    percent: 100
+
+  - title: "Controller and Steam Deck support"
+    line: "Full gamepad navigation and comfortable button prompts for handheld play."
+    status: done
+    percent: 100
+
+  - title: "The first quest lines"
+    line: "Opening errands and fossil requests from Jo and the townsfolk."
+    status: done
+    percent: 100

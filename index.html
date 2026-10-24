@@ -1,0 +1,161 @@
+---
+layout: default
+title: Home
+---
+<section class="paper-panel hero-panel">
+  <div class="hero-grid">
+    <div class="hero-main">
+      <span class="section-kicker">Welcome to the dig</span>
+      <h1 class="hero-title">A cosy game about digging up the past</h1>
+      <p class="hero-pitch">{{ site.pitch | escape }}</p>
+      <p class="hero-body">
+        Arrive by bus in a small town, learn to dig from your mentor Jo, brush fossils out of the rock, fill a journal of real prehistoric species and build up your own museum. Explore nine regions by bus, train, ferry and plane, pan for gold in the rivers, decorate your cottage and garden, and help the townsfolk through every season.
+      </p>
+
+      {% assign has_external = false %}
+      {% if site.steam_url != "" and site.steam_url != nil %}{% assign has_external = true %}{% endif %}
+      {% if site.discord_url != "" and site.discord_url != nil %}{% assign has_external = true %}{% endif %}
+      {% if site.youtube_url != "" and site.youtube_url != nil %}{% assign has_external = true %}{% endif %}
+      {% if site.tiktok_url != "" and site.tiktok_url != nil %}{% assign has_external = true %}{% endif %}
+      {% if site.instagram_url != "" and site.instagram_url != nil %}{% assign has_external = true %}{% endif %}
+
+      <div class="hero-button-row">
+        <a class="btn-journal btn-primary" href="{{ '/devlog/' | relative_url }}">Read the Dev Log</a>
+        <a class="btn-journal" href="{{ '/roadmap/' | relative_url }}">See the Roadmap</a>
+        <a class="btn-journal" href="{{ '/builds/' | relative_url }}">Playtest Builds</a>
+        {% if site.steam_url and site.steam_url != "" %}
+          <a class="btn-journal" href="{{ site.steam_url | escape }}" rel="noopener noreferrer">Wishlist on Steam</a>
+        {% endif %}
+        {% if site.discord_url and site.discord_url != "" %}
+          <a class="btn-journal" href="{{ site.discord_url | escape }}" rel="noopener noreferrer">Join Playtest Discord</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <aside class="hero-bench paper-subpanel" aria-label="Current trench status">
+      <div class="bench-header">
+        <span class="bench-kicker">Right now</span>
+        {% if site.current_version and site.current_version != "" %}
+          <span class="rubber-stamp-inline">v{{ site.current_version | escape }}</span>
+        {% endif %}
+      </div>
+
+      <dl class="bench-list">
+        {% if site.current_version and site.current_version != "" %}
+          <div class="bench-item">
+            <dt>Latest Playtest Build</dt>
+            <dd>
+              <strong>Version {{ site.current_version | escape }}</strong>
+              {% if site.current_version_date and site.current_version_date != "" %}
+                <span class="bench-date">(logged {{ site.current_version_date | escape }})</span>
+              {% endif %}
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if site.working_on_now and site.working_on_now != "" %}
+          <div class="bench-item">
+            <dt>Working On Now</dt>
+            <dd class="working-now-highlight">{{ site.working_on_now | escape }}</dd>
+          </div>
+        {% endif %}
+
+        <div class="bench-item">
+          <dt>Engine &amp; Target</dt>
+          <dd>Godot 4, HD-2D pixel art, PC and Steam Deck</dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+{% include reveal.html %}
+
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Excavation Overview</span>
+      <h2 class="section-title">Overall Progress</h2>
+    </div>
+  </div>
+
+  {% include progress-summary.html %}
+</section>
+
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Recent Specimens</span>
+      <h2 class="section-title">Newest Dev Log Posts</h2>
+    </div>
+    <a class="btn-journal btn-small" href="{{ '/devlog/' | relative_url }}">All posts ({{ site.posts | size }})</a>
+  </div>
+
+  {% assign total_posts = site.posts | size %}
+  {% if total_posts > 0 %}
+    <div class="specimen-grid">
+      {% for post in site.posts limit:3 %}
+        {% assign find_num = total_posts | minus: forloop.index0 %}
+        {% include post-card.html post=post find_number=find_num %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-notice">No dev log posts logged yet.</p>
+  {% endif %}
+</section>
+
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Explore the Journal</span>
+      <h2 class="section-title">Quick Field Links</h2>
+    </div>
+  </div>
+
+  <div class="quick-links-grid">
+    <a class="quick-card paper-subpanel" href="{{ '/roadmap/' | relative_url }}">
+      <span class="quick-card-grade grade-pill grade-excellent">Strata Map</span>
+      <h3 class="quick-card-title">Roadmap Layers</h3>
+      <p class="quick-card-text">See what is settled at the bottom, what I am digging now, and what lies in the upper layers.</p>
+    </a>
+
+    <a class="quick-card paper-subpanel" href="{{ '/builds/' | relative_url }}">
+      <span class="quick-card-grade grade-pill grade-pristine">v{{ site.current_version | escape }}</span>
+      <h3 class="quick-card-title">Playtest Builds</h3>
+      <p class="quick-card-text">Read the notes and highlights from each open playtest build, newest first.</p>
+    </a>
+
+    <a class="quick-card paper-subpanel" href="{{ '/art/' | relative_url }}">
+      <span class="quick-card-grade grade-pill grade-good">Hand-made Art</span>
+      <h3 class="quick-card-title">Placeholder Asset Tracker</h3>
+      <p class="quick-card-text">Track how many placeholder assets have been replaced with hand-made pixel art and audio.</p>
+    </a>
+
+    <a class="quick-card paper-subpanel" href="{{ '/gallery/' | relative_url }}">
+      <span class="quick-card-grade grade-pill grade-fair">Snapshots</span>
+      <h3 class="quick-card-title">Screenshots &amp; Clips</h3>
+      <p class="quick-card-text">Browse screenshots taped into the journal and video clips from recent builds.</p>
+    </a>
+  </div>
+
+  {% if has_external %}
+    <div class="external-links-strip">
+      <span class="external-strip-label">Official Links:</span>
+      {% if site.steam_url and site.steam_url != "" %}
+        <a class="btn-journal btn-small" href="{{ site.steam_url | escape }}" rel="noopener noreferrer">Steam</a>
+      {% endif %}
+      {% if site.discord_url and site.discord_url != "" %}
+        <a class="btn-journal btn-small" href="{{ site.discord_url | escape }}" rel="noopener noreferrer">Discord</a>
+      {% endif %}
+      {% if site.youtube_url and site.youtube_url != "" %}
+        <a class="btn-journal btn-small" href="{{ site.youtube_url | escape }}" rel="noopener noreferrer">YouTube</a>
+      {% endif %}
+      {% if site.tiktok_url and site.tiktok_url != "" %}
+        <a class="btn-journal btn-small" href="{{ site.tiktok_url | escape }}" rel="noopener noreferrer">TikTok</a>
+      {% endif %}
+      {% if site.instagram_url and site.instagram_url != "" %}
+        <a class="btn-journal btn-small" href="{{ site.instagram_url | escape }}" rel="noopener noreferrer">Instagram</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>

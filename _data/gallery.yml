@@ -1,0 +1,37 @@
+# ==============================================================================
+# GALLERY SCREENSHOTS AND VIDEOS
+# ==============================================================================
+# Each item can have either:
+#   image: "assets/img/your-file-name.png"
+# OR
+#   video_url: "https://www.youtube.com/watch?v=..." (or a TikTok / Instagram URL)
+# along with:
+#   caption: "A short description of what is in the picture or clip"
+#   date: "19 Oct 2026"
+#
+# Put the newest screenshot first. Upload pictures to assets/img/ first.
+# The first picture here is also the one buried under the dirt on the Home
+# page, unless reveal_image in _config.yml names a different one.
+
+items:
+  - image: "assets/img/cottage-garden.jpg"
+    caption: "The cottage garden, with beds, paths and a bench you place yourself."
+    date: "17 Oct 2026"
+
+  - image: "assets/img/cottage-seasons.jpg"
+    caption: "The same cottage through spring, summer, autumn and winter."
+    date: "18 Oct 2026"
+
+  - image: "assets/img/town-at-dusk.jpg"
+    caption: "Townsfolk out on the cobbles as the lamps come on."
+    date: "17 Oct 2026"
+
+  # Example of a YouTube video (uncomment and paste your link when ready):
+  # - video_url: "https://www.youtube.com/watch?v=EXAMPLE_ID"
+  #   caption: "A short walk through the museum and prep lab."
+  #   date: "23 Oct 2026"
+
+  # Example of a TikTok or Instagram clip (turns into a simple link card):
+  # - video_url: "https://www.tiktok.com/@example/video/123456"
+  #   caption: "Gold panning by the river in autumn."
+  #   date: "23 Oct 2026"

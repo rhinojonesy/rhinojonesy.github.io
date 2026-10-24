@@ -1,0 +1,96 @@
+---
+layout: default
+title: Art & Sound Progress
+summary: Tracking progress on replacing placeholder assets with hand-made pixel art, UI, sound effects and music.
+---
+{% assign categories = site.data.art_progress.categories %}
+{% assign grand_replaced = 0 %}
+{% assign grand_total = 0 %}
+
+{% for cat in categories %}
+  {% assign r = cat.replaced | plus: 0 %}
+  {% assign t = cat.total | plus: 0 %}
+  {% assign grand_replaced = grand_replaced | plus: r %}
+  {% assign grand_total = grand_total | plus: t %}
+{% endfor %}
+
+{% if grand_total > 0 %}
+  {% assign grand_percent = grand_replaced | times: 100 | divided_by: grand_total %}
+{% else %}
+  {% assign grand_percent = 0 %}
+{% endif %}
+
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Craft &amp; Workshop Log</span>
+      <h1 class="page-title">Placeholder Assets Replaced with Hand-made Art</h1>
+      <p class="page-intro">
+        While building new game systems, I use temporary stand-in sprites and audio called placeholder assets so I can test how everything plays. This page tracks how many placeholder assets have been replaced with final, hand-made pixel art, sound effects and music.
+      </p>
+    </div>
+  </div>
+
+  <div class="paper-subpanel art-overall-card">
+    <div class="art-overall-header">
+      <div>
+        <h2 class="art-overall-title">Overall Hand-made Replacement</h2>
+        <p class="art-overall-sub">
+          {% if grand_total > 0 %}
+            {{ grand_replaced }} of {{ grand_total }} placeholder assets replaced across all categories ({{ grand_percent }}%).
+          {% else %}
+            0 of 0 placeholder assets counted so far (0%). I am currently counting up the full asset list for each category.
+          {% endif %}
+        </p>
+      </div>
+      <div class="art-overall-badge">
+        {% if grand_total > 0 and grand_replaced == grand_total %}
+          <span class="grade-pill grade-pristine">Pristine ({{ grand_percent }}%)</span>
+        {% elsif grand_total > 0 %}
+          <span class="grade-pill grade-excellent">{{ grand_percent }}% Hand-made</span>
+        {% else %}
+          <span class="grade-pill grade-fair">0% (Tallying list)</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="meter-track meter-track-large" role="progressbar" aria-valuenow="{{ grand_percent }}" aria-valuemin="0" aria-valuemax="100" aria-label="Overall placeholder assets replaced with hand-made art">
+      <div class="meter-fill meter-fill-art" style="width: {{ grand_percent }}%;"></div>
+    </div>
+  </div>
+
+  <div class="art-category-grid">
+    {% for cat in categories %}
+      {% assign c_replaced = cat.replaced | plus: 0 %}
+      {% assign c_total = cat.total | plus: 0 %}
+      {% if c_total > 0 %}
+        {% assign c_percent = c_replaced | times: 100 | divided_by: c_total %}
+      {% else %}
+        {% assign c_percent = 0 %}
+      {% endif %}
+
+      <article class="paper-subpanel art-category-card">
+        <div class="art-category-top">
+          <h3 class="art-category-name">{{ cat.name | escape }}</h3>
+          <span class="art-category-numbers">
+            {{ c_replaced }} / {{ c_total }}
+            ({{ c_percent }}%)
+          </span>
+        </div>
+
+        <div class="meter-track" role="progressbar" aria-valuenow="{{ c_percent }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ cat.name | escape }} hand-made replacement">
+          <div class="meter-fill {% if c_total > 0 and c_replaced == c_total %}meter-fill-done{% else %}meter-fill-art{% endif %}" style="width: {{ c_percent }}%;"></div>
+        </div>
+
+        <div class="art-category-footer">
+          {% if cat.note and cat.note != "" %}
+            <p class="art-category-note">{{ cat.note | escape }}</p>
+          {% endif %}
+          {% if c_total == 0 %}
+            <span class="art-zero-tag">Total set to 0 until asset count is entered</span>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

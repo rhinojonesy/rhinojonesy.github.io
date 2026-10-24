@@ -1,0 +1,51 @@
+---
+layout: default
+title: Playtest Builds
+summary: History of Project Paleo playtest builds with release dates and highlights, newest first.
+---
+{% assign build_list = site.data.builds.items %}
+
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Field Release Archive</span>
+      <h1 class="page-title">Playtest Builds</h1>
+      <p class="page-intro">
+        Every open playtest build of Project Paleo, listed newest first with its release date and main highlights.
+      </p>
+    </div>
+  </div>
+
+  {% if build_list and build_list.size > 0 %}
+    <div class="builds-timeline">
+      {% for build in build_list %}
+        <article class="build-card paper-subpanel">
+          <header class="build-card-header">
+            <div class="build-version-group">
+              <h2 class="build-version-title">Version {{ build.version | escape }}</h2>
+              {% if forloop.first %}
+                <span class="grade-pill grade-pristine">Latest Build</span>
+              {% endif %}
+            </div>
+            <span class="rubber-stamp-inline">Logged {{ build.date | escape }}</span>
+          </header>
+
+          {% if build.summary and build.summary != "" %}
+            <p class="build-summary">{{ build.summary | escape }}</p>
+          {% endif %}
+
+          {% if build.highlights and build.highlights.size > 0 %}
+            <h3 class="build-highlights-heading">Highlights in this build:</h3>
+            <ul class="build-highlights-list">
+              {% for point in build.highlights %}
+                <li>{{ point | escape }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-notice">No playtest builds have been logged yet.</p>
+  {% endif %}
+</section>

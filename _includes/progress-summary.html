@@ -1,0 +1,77 @@
+{% assign roadmap_items = site.data.roadmap.items %}
+{% assign total_strata = 0 %}
+{% assign done_strata = 0 %}
+{% assign digging_strata = 0 %}
+{% assign planned_strata = 0 %}
+
+{% for item in roadmap_items %}
+  {% assign total_strata = total_strata | plus: 1 %}
+  {% if item.status == "done" %}
+    {% assign done_strata = done_strata | plus: 1 %}
+  {% elsif item.status == "digging" %}
+    {% assign digging_strata = digging_strata | plus: 1 %}
+  {% else %}
+    {% assign planned_strata = planned_strata | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if total_strata > 0 %}
+  {% assign roadmap_percent = done_strata | times: 100 | divided_by: total_strata %}
+{% else %}
+  {% assign roadmap_percent = 0 %}
+{% endif %}
+
+{% assign art_categories = site.data.art_progress.categories %}
+{% assign total_art_replaced = 0 %}
+{% assign total_art_count = 0 %}
+
+{% for cat in art_categories %}
+  {% assign cat_replaced = cat.replaced | plus: 0 %}
+  {% assign cat_total = cat.total | plus: 0 %}
+  {% assign total_art_replaced = total_art_replaced | plus: cat_replaced %}
+  {% assign total_art_count = total_art_count | plus: cat_total %}
+{% endfor %}
+
+{% if total_art_count > 0 %}
+  {% assign art_percent = total_art_replaced | times: 100 | divided_by: total_art_count %}
+{% else %}
+  {% assign art_percent = 0 %}
+{% endif %}
+
+<div class="progress-summary-grid">
+  <div class="paper-subpanel progress-box">
+    <div class="progress-box-header">
+      <span class="progress-label">Roadmap Strata Settled</span>
+      <span class="grade-pill grade-pristine">{{ done_strata }} of {{ total_strata }} done ({{ roadmap_percent }}%)</span>
+    </div>
+    <div class="meter-track" role="progressbar" aria-valuenow="{{ roadmap_percent }}" aria-valuemin="0" aria-valuemax="100" aria-label="Roadmap strata completion">
+      <div class="meter-fill meter-fill-done" style="width: {{ roadmap_percent }}%;"></div>
+    </div>
+    <p class="progress-caption">
+      {{ done_strata }} settled at the bottom, {{ digging_strata }} digging now, {{ planned_strata }} planned in the upper layers.
+      <a href="{{ '/roadmap/' | relative_url }}">Inspect rock strata</a>.
+    </p>
+  </div>
+
+  <div class="paper-subpanel progress-box">
+    <div class="progress-box-header">
+      <span class="progress-label">Placeholder Assets Replaced</span>
+      {% if total_art_count > 0 %}
+        <span class="grade-pill grade-excellent">{{ total_art_replaced }} of {{ total_art_count }} ({{ art_percent }}%)</span>
+      {% else %}
+        <span class="grade-pill grade-fair">0 of 0 (0%)</span>
+      {% endif %}
+    </div>
+    <div class="meter-track" role="progressbar" aria-valuenow="{{ art_percent }}" aria-valuemin="0" aria-valuemax="100" aria-label="Placeholder assets replaced with hand-made art">
+      <div class="meter-fill meter-fill-art" style="width: {{ art_percent }}%;"></div>
+    </div>
+    <p class="progress-caption">
+      {% if total_art_count > 0 %}
+        {{ total_art_replaced }} placeholder assets replaced with hand-made art so far.
+      {% else %}
+        Asset audit in progress. Counts are set to 0 while the full list is tallied.
+      {% endif %}
+      <a href="{{ '/art/' | relative_url }}">View art tracker</a>.
+    </p>
+  </div>
+</div>

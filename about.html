@@ -1,0 +1,91 @@
+---
+layout: default
+title: About the Game
+summary: What Project Paleo is, what it runs on, and how to join open playtests.
+---
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Field Manual</span>
+      <h1 class="page-title">About Project Paleo</h1>
+      <p class="page-intro">
+        Project Paleo (working title) is a cosy fossil-hunting game for PC, made by a solo developer in Godot 4 with an HD-2D pixel-art look and with the Steam Deck in mind. It is made for people who love Stardew Valley and Animal Crossing.
+      </p>
+    </div>
+  </div>
+
+  <div class="about-grid">
+    <div class="paper-subpanel prose">
+      <h2>Life in Town and Beyond</h2>
+      <p>
+        Your journey begins when you arrive by bus in a quiet country town with an old field bag and plenty of curiosity. Your mentor, Jo, teaches you how to read the ground, dig into fossil-bearing rock and gently brush fragile bones and shells free without chipping them.
+      </p>
+      <p>
+        Every specimen you unearth has a quality grade, from weathered Poor finds up to Fair, Good, Excellent and Pristine museum pieces. As you explore, you fill out an illustrated journal of real prehistoric species and save up for a plot to build and organise your own museum.
+      </p>
+
+      <h2>What You Can Do</h2>
+      <ul>
+        <li><strong>Digging, brushing and the prep lab:</strong> Excavate fossils in the field and clean them carefully on your lab bench.</li>
+        <li><strong>Build your own museum:</strong> Lay out display halls, arrange exhibits and share prehistoric history with the town.</li>
+        <li><strong>Nine regions to explore:</strong> Travel across nine distinct regions by bus, train, ferry and plane, each with its own geology and fossil beds.</li>
+        <li><strong>Cottage, garden and gold panning:</strong> Decorate your cosy cottage with furniture, tend a garden outside and pan for gold in the rivers.</li>
+        <li><strong>Seasons, weather and townsfolk:</strong> Watch winter snow, autumn colours and spring blossom transform the landscape while taking on quests from your neighbours.</li>
+      </ul>
+    </div>
+
+    <aside class="about-sidebar">
+      <div class="paper-subpanel about-box">
+        <h2 class="about-box-title">What It Runs On</h2>
+        <dl class="spec-list">
+          <div class="spec-row">
+            <dt>Platforms</dt>
+            <dd>Windows PC &amp; Linux PC (Steam)</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Handheld</dt>
+            <dd>Designed with the Steam Deck in mind (16:10 &amp; 16:9 friendly UI, readable text)</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Controls</dt>
+            <dd>Full controller support alongside mouse and keyboard</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Engine &amp; Style</dt>
+            <dd>Godot 4 with an HD-2D pixel-art look</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Developer</dt>
+            <dd>Solo developer</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="paper-subpanel about-box">
+        <h2 class="about-box-title">How to Join Playtests</h2>
+        <p>
+          Open playtests run through our community Discord server. I share new playtest builds there and gather feedback on how the early hours feel.
+        </p>
+        {% if site.discord_url and site.discord_url != "" %}
+          <p>
+            <a class="btn-journal btn-primary" href="{{ site.discord_url | escape }}" rel="noopener noreferrer">
+              Join the Playtest Discord
+            </a>
+          </p>
+        {% else %}
+          <p class="muted-box-note">
+            The Discord invite button will appear here as soon as the next playtest window opens. In the meantime, you can follow progress in the <a href="{{ '/devlog/' | relative_url }}">Dev Log</a> and <a href="{{ '/builds/' | relative_url }}">Builds</a> pages.
+          </p>
+        {% endif %}
+
+        {% if site.steam_url and site.steam_url != "" %}
+          <p>
+            <a class="btn-journal" href="{{ site.steam_url | escape }}" rel="noopener noreferrer">
+              Visit the Steam Store Page
+            </a>
+          </p>
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+</section>

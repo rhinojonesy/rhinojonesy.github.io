@@ -1,0 +1,204 @@
+# Configuration for Pages CMS (https://app.pagescms.org)
+# Sign in with your GitHub account at app.pagescms.org to edit posts,
+# roadmap layers, playtest builds, art counts, gallery items and site settings
+# through simple web forms on your PC or phone.
+
+media:
+  input: assets/img
+  output: assets/img
+  extensions: [png, jpg, jpeg, webp, gif]
+
+content:
+  - name: posts
+    label: Dev Log Posts
+    type: collection
+    path: _posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: post
+        hidden: true
+      - name: title
+        label: Post Title
+        type: string
+        required: true
+      - name: date
+        label: Publish Date
+        type: date
+        required: true
+      - name: version
+        label: Game Version (optional, e.g. 0.17.0)
+        type: string
+      - name: tags
+        label: Tags
+        type: select
+        options:
+          multiple: true
+          values: [feature, fix, art, sound, playtest, news]
+      - name: cover
+        label: Cover Screenshot (optional)
+        type: image
+      - name: summary
+        label: Short Summary (1 or 2 sentences for preview cards)
+        type: text
+        required: true
+      - name: body
+        label: Post Text
+        type: rich-text
+
+  - name: roadmap
+    label: Roadmap Strata
+    type: file
+    path: _data/roadmap.yml
+    fields:
+      - name: items
+        label: Roadmap Items
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Feature or Milestone Title
+            type: string
+            required: true
+          - name: line
+            label: Short Description Line
+            type: string
+            required: true
+          - name: status
+            label: Stratum Layer Status
+            type: select
+            required: true
+            options:
+              values:
+                - value: planned
+                  label: Planned (Top layer)
+                - value: digging
+                  label: Digging now (Active middle layer)
+                - value: done
+                  label: Done (Deep settled layer)
+          - name: percent
+            label: Completion Percentage (optional, 0 to 100)
+            type: number
+
+  - name: builds
+    label: Playtest Builds
+    type: file
+    path: _data/builds.yml
+    fields:
+      - name: items
+        label: Playtest Builds (put newest at the top)
+        type: object
+        list: true
+        fields:
+          - name: version
+            label: Version Number (e.g. 0.17.0)
+            type: string
+            required: true
+          - name: date
+            label: Release Date (e.g. 19 Oct 2026)
+            type: string
+            required: true
+          - name: summary
+            label: One-line Summary
+            type: string
+          - name: highlights
+            label: Highlights List
+            type: string
+            list: true
+
+  - name: art_progress
+    label: Hand-made Art Progress
+    type: file
+    path: _data/art_progress.yml
+    fields:
+      - name: categories
+        label: Asset Categories
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Category Name
+            type: string
+            required: true
+          - name: note
+            label: Short Note
+            type: string
+          - name: replaced
+            label: Placeholder Assets Replaced with Hand-made Art
+            type: number
+            required: true
+          - name: total
+            label: Total Assets Planned in Category
+            type: number
+            required: true
+
+  - name: gallery
+    label: Gallery
+    type: file
+    path: _data/gallery.yml
+    fields:
+      - name: items
+        label: Gallery Entries
+        type: object
+        list: true
+        fields:
+          - name: image
+            label: Screenshot Path (leave empty if linking a video)
+            type: image
+          - name: video_url
+            label: Video Link (YouTube, TikTok or Instagram URL, optional)
+            type: string
+          - name: caption
+            label: Caption
+            type: string
+            required: true
+          - name: date
+            label: Date Logged (e.g. 19 Oct 2026)
+            type: string
+            required: true
+
+  - name: settings
+    label: Site Settings
+    type: file
+    path: _config.yml
+    fields:
+      - name: title
+        label: Game Title
+        type: string
+        required: true
+      - name: pitch
+        label: One-line Pitch
+        type: text
+        required: true
+      - name: current_version
+        label: Current Version
+        type: string
+      - name: current_version_date
+        label: Current Version Date
+        type: string
+      - name: working_on_now
+        label: Working On Now Line
+        type: string
+      - name: reveal_image
+        label: Picture Under The Dirt On The Home Page (empty = first gallery picture)
+        type: image
+      - name: reveal_caption
+        label: Caption For That Picture
+        type: string
+      - name: discord_url
+        label: Discord Invite Link
+        type: string
+      - name: tiktok_url
+        label: TikTok Profile Link
+        type: string
+      - name: instagram_url
+        label: Instagram Profile Link
+        type: string
+      - name: youtube_url
+        label: YouTube Channel Link
+        type: string
+      - name: steam_url
+        label: Steam Store Page Link
+        type: string

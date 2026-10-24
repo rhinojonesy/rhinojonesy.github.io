@@ -1,0 +1,31 @@
+# ==============================================================================
+# PLAYTEST BUILDS HISTORY
+# ==============================================================================
+# Put the newest build at the top of the list so it appears first on the page.
+# Always wrap text in double quotes ("") if it contains a colon (:).
+
+items:
+  - version: "0.17.0"
+    date: "23 Oct 2026"
+    summary: "A big visual and seasonal update bringing the new HD-2D pixel look, townsfolk quests, cottage life and controller support."
+    highlights:
+      - "A new HD-2D pixel look with warm lighting and depth across town and dig sites."
+      - "Seasons: winter snow, autumn colours and spring blossom."
+      - "Quests from the townsfolk to help out around town."
+      - "Gold panning in the rivers."
+      - "A cottage with furniture and a garden."
+      - "Eating and a calendar to track the days and seasons."
+      - "Fossil quality shown with stars and colours (Pristine, Excellent, Good, Fair and Poor)."
+      - "A female or male character with a choice of hair styles."
+      - "A bookshop in town."
+      - "Controller support for PC gamepads and Steam Deck."
+
+  - version: "0.16.2"
+    date: "12 Oct 2026"
+    summary: "The first open playtest build, covering the opening two hours of the game."
+    highlights:
+      - "Arriving by bus and learning the basics on Jo's dig."
+      - "Brushing fossils carefully out of the rock."
+      - "Filling out the fossil journal with real prehistoric species."
+      - "Early field work around town."
+      - "Saving up for your own museum plot."

@@ -1,0 +1,56 @@
+{% assign post_tags_string = "" %}
+{% if include.post.tags and include.post.tags.size > 0 %}
+  {% assign post_tags_string = include.post.tags | join: " " | downcase %}
+{% endif %}
+
+<article class="specimen-card paper-subpanel" data-tags="{{ post_tags_string | escape }}">
+  <div class="specimen-card-top">
+    <span class="specimen-number-badge">Find no. {{ include.find_number }}, logged {{ include.post.date | date: "%-d %b %Y" }}</span>
+    {% if include.post.version and include.post.version != "" %}
+      <span class="version-stamp">Build {{ include.post.version | escape }}</span>
+    {% endif %}
+  </div>
+
+  <h3 class="specimen-card-title">
+    <a href="{{ include.post.url | relative_url }}">{{ include.post.title | escape }}</a>
+  </h3>
+
+  {% if include.post.cover and include.post.cover != "" %}
+    <figure class="photo-frame specimen-card-photo">
+      <span class="tape tape-tl" aria-hidden="true"></span>
+      <span class="tape tape-tr" aria-hidden="true"></span>
+      <span class="tape tape-bl" aria-hidden="true"></span>
+      <span class="tape tape-br" aria-hidden="true"></span>
+      <img
+        src="{{ include.post.cover | relative_url }}"
+        alt="Screenshot for {{ include.post.title | escape }}"
+        loading="lazy"
+        onerror="this.parentElement.classList.add('is-missing');"
+      >
+      <div class="photo-fallback" aria-label="Field sketch placeholder: photo to come">
+        <span class="photo-fallback-stamp">Photo To Come</span>
+        <span class="photo-fallback-note">Field photo slot ({{ include.post.cover | escape }})</span>
+      </div>
+    </figure>
+  {% endif %}
+
+  {% if include.post.summary and include.post.summary != "" %}
+    <p class="specimen-card-summary">{{ include.post.summary | escape }}</p>
+  {% else %}
+    <p class="specimen-card-summary">{{ include.post.excerpt | strip_html | truncatewords: 32 | escape }}</p>
+  {% endif %}
+
+  <div class="specimen-card-footer">
+    {% if include.post.tags and include.post.tags.size > 0 %}
+      <ul class="tag-list" aria-label="Tags">
+        {% for tag in include.post.tags %}
+          <li class="tag-pill tag-{{ tag | downcase | escape }}">{{ tag | escape }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <a class="specimen-read-link" href="{{ include.post.url | relative_url }}">
+      Read field note <span class="sr-only">for {{ include.post.title | escape }}</span>
+    </a>
+  </div>
+</article>

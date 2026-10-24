@@ -1,0 +1,129 @@
+---
+layout: default
+title: Roadmap
+summary: Project Paleo development roadmap drawn as geological rock strata, from planned surface layers down to settled bedrock.
+---
+{% assign all_items = site.data.roadmap.items %}
+
+<section class="paper-panel section-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Geological Excavation Chart</span>
+      <h1 class="page-title">Rock Strata Roadmap</h1>
+      <p class="page-intro">
+        This roadmap is drawn like a dig site cross-section. Planned work sits in the upper topsoil layers, current work is the active trench being dug right now, and finished systems rest in the deep, settled bedrock at the bottom.
+      </p>
+    </div>
+  </div>
+
+  <div class="grade-legend paper-subpanel" aria-label="Fossil grade status key">
+    <span class="legend-title">Key:</span>
+    <span class="grade-pill grade-fair">Planned (top layers)</span>
+    <span class="grade-pill grade-excellent">Digging now</span>
+    <span class="grade-pill grade-pristine">Done (deep layers)</span>
+  </div>
+
+  <div class="strata-column">
+    <section class="stratum-band stratum-planned" aria-labelledby="heading-planned">
+      <header class="stratum-header">
+        <div class="stratum-depth-marker">Depth 01: Upper Topsoil &amp; Sandstone</div>
+        <div class="stratum-title-row">
+          <h2 id="heading-planned" class="stratum-title">Planned Layers (Yet to Dig)</h2>
+          <span class="grade-pill grade-fair">Status: Planned</span>
+        </div>
+        <p class="stratum-desc">Upcoming features and milestones waiting in the upper rock layers, leading up to Early Access on Steam.</p>
+      </header>
+
+      <ul class="strata-card-grid">
+        {% for item in all_items %}
+          {% if item.status == "planned" %}
+            <li class="stratum-item-card">
+              <div class="stratum-item-top">
+                <h3 class="stratum-item-title">{{ item.title | escape }}</h3>
+                <span class="grade-pill grade-fair">Planned</span>
+              </div>
+              <p class="stratum-item-line">{{ item.line | escape }}</p>
+              {% if item.percent and item.percent != "" %}
+                {% assign pct = item.percent | plus: 0 %}
+                <div class="stratum-mini-meter">
+                  <div class="stratum-mini-label">Progress: {{ pct }}%</div>
+                  <div class="meter-track" role="progressbar" aria-valuenow="{{ pct }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ item.title | escape }} progress">
+                    <div class="meter-fill meter-fill-planned" style="width: {{ pct }}%;"></div>
+                  </div>
+                </div>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="stratum-band stratum-digging" aria-labelledby="heading-digging">
+      <header class="stratum-header">
+        <div class="stratum-depth-marker">Depth 02: Active Excavation Trench</div>
+        <div class="stratum-title-row">
+          <h2 id="heading-digging" class="stratum-title">Digging Now (Active Layer)</h2>
+          <span class="grade-pill grade-excellent">Status: Digging Now</span>
+        </div>
+        <p class="stratum-desc">Where my pickaxe and brush are working right now.</p>
+      </header>
+
+      <ul class="strata-card-grid">
+        {% for item in all_items %}
+          {% if item.status == "digging" %}
+            <li class="stratum-item-card">
+              <div class="stratum-item-top">
+                <h3 class="stratum-item-title">{{ item.title | escape }}</h3>
+                <span class="grade-pill grade-excellent">Digging now</span>
+              </div>
+              <p class="stratum-item-line">{{ item.line | escape }}</p>
+              {% if item.percent and item.percent != "" %}
+                {% assign pct = item.percent | plus: 0 %}
+                <div class="stratum-mini-meter">
+                  <div class="stratum-mini-label">Progress: {{ pct }}%</div>
+                  <div class="meter-track" role="progressbar" aria-valuenow="{{ pct }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ item.title | escape }} progress">
+                    <div class="meter-fill meter-fill-digging" style="width: {{ pct }}%;"></div>
+                  </div>
+                </div>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="stratum-band stratum-done" aria-labelledby="heading-done">
+      <header class="stratum-header">
+        <div class="stratum-depth-marker">Depth 03: Deep Settled Limestone &amp; Bedrock</div>
+        <div class="stratum-title-row">
+          <h2 id="heading-done" class="stratum-title">Done (Settled Foundation Layers)</h2>
+          <span class="grade-pill grade-pristine">Status: Done</span>
+        </div>
+        <p class="stratum-desc">Core systems already unearthed, playable in builds and settled into the foundation of the game.</p>
+      </header>
+
+      <ul class="strata-card-grid">
+        {% for item in all_items %}
+          {% if item.status == "done" %}
+            <li class="stratum-item-card">
+              <div class="stratum-item-top">
+                <h3 class="stratum-item-title">{{ item.title | escape }}</h3>
+                <span class="grade-pill grade-pristine">Done</span>
+              </div>
+              <p class="stratum-item-line">{{ item.line | escape }}</p>
+              {% if item.percent and item.percent != "" %}
+                {% assign pct = item.percent | plus: 0 %}
+                <div class="stratum-mini-meter">
+                  <div class="stratum-mini-label">Complete: {{ pct }}%</div>
+                  <div class="meter-track" role="progressbar" aria-valuenow="{{ pct }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ item.title | escape }} progress">
+                    <div class="meter-fill meter-fill-done" style="width: {{ pct }}%;"></div>
+                  </div>
+                </div>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+</section>

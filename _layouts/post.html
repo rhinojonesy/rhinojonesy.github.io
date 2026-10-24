@@ -1,0 +1,86 @@
+---
+layout: default
+---
+{% assign total_posts = site.posts | size %}
+{% assign find_number = 1 %}
+{% for p in site.posts %}
+  {% if p.url == page.url %}
+    {% assign find_number = total_posts | minus: forloop.index0 %}
+  {% endif %}
+{% endfor %}
+
+<article class="paper-panel specimen-article">
+  <header class="specimen-header">
+    <div class="specimen-meta-row">
+      <span class="specimen-number-badge">Find no. {{ find_number }}, logged {{ page.date | date: "%-d %b %Y" }}</span>
+      {% if page.version and page.version != "" %}
+        <span class="version-stamp">Build {{ page.version | escape }}</span>
+      {% endif %}
+    </div>
+
+    <h1 class="specimen-title">{{ page.title | escape }}</h1>
+
+    {% if page.summary and page.summary != "" %}
+      <p class="specimen-lead">{{ page.summary | escape }}</p>
+    {% endif %}
+
+    {% if page.tags and page.tags.size > 0 %}
+      <ul class="tag-list" aria-label="Post tags">
+        {% for tag in page.tags %}
+          <li class="tag-pill tag-{{ tag | downcase | escape }}">{{ tag | escape }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </header>
+
+  {% if page.cover and page.cover != "" %}
+    <figure class="photo-frame specimen-cover-frame">
+      <span class="tape tape-tl" aria-hidden="true"></span>
+      <span class="tape tape-tr" aria-hidden="true"></span>
+      <span class="tape tape-bl" aria-hidden="true"></span>
+      <span class="tape tape-br" aria-hidden="true"></span>
+      <img
+        src="{{ page.cover | relative_url }}"
+        alt="Screenshot for {{ page.title | escape }}"
+        loading="lazy"
+        onerror="this.parentElement.classList.add('is-missing');"
+      >
+      <div class="photo-fallback" aria-label="Field sketch placeholder: photo to come">
+        <span class="photo-fallback-stamp">Field Photo To Come</span>
+        <span class="photo-fallback-note">Screenshot will appear here once uploaded to {{ page.cover | escape }}</span>
+      </div>
+    </figure>
+  {% endif %}
+
+  <div class="specimen-content prose">
+    {{ content }}
+  </div>
+
+  <footer class="specimen-footer">
+    <nav class="post-pager" aria-label="Other field notes">
+      <div class="post-pager-slot">
+        {% if page.previous %}
+          <span class="pager-label">Earlier find</span>
+          <a class="pager-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title | escape }}</a>
+        {% else %}
+          <span class="pager-label">Earlier find</span>
+          <span class="pager-empty">First entry in the journal</span>
+        {% endif %}
+      </div>
+
+      <div class="post-pager-slot post-pager-next">
+        {% if page.next %}
+          <span class="pager-label">Newer find</span>
+          <a class="pager-link" href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }}</a>
+        {% else %}
+          <span class="pager-label">Newer find</span>
+          <span class="pager-empty">Latest entry in the journal</span>
+        {% endif %}
+      </div>
+    </nav>
+
+    <div class="specimen-back-row">
+      <a class="btn-journal" href="{{ '/devlog/' | relative_url }}">Back to all dev log posts</a>
+    </div>
+  </footer>
+</article>

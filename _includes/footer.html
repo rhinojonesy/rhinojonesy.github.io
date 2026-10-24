@@ -1,0 +1,58 @@
+{% assign has_social_links = false %}
+{% if site.discord_url != "" and site.discord_url != nil %}{% assign has_social_links = true %}{% endif %}
+{% if site.tiktok_url != "" and site.tiktok_url != nil %}{% assign has_social_links = true %}{% endif %}
+{% if site.instagram_url != "" and site.instagram_url != nil %}{% assign has_social_links = true %}{% endif %}
+{% if site.youtube_url != "" and site.youtube_url != nil %}{% assign has_social_links = true %}{% endif %}
+{% if site.steam_url != "" and site.steam_url != nil %}{% assign has_social_links = true %}{% endif %}
+
+<footer class="site-footer paper-panel">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h2 class="footer-heading">{{ site.title | escape }}</h2>
+      <p class="footer-text">
+        A cosy fossil-hunting game made by a solo developer in Godot 4 for PC and Steam Deck.
+        No trackers, no cookies and no sign-up boxes on this site.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Follow the Dig</h2>
+      <ul class="footer-links">
+        <li><a href="{{ '/feed.xml' | relative_url }}">Dev Log RSS Feed</a></li>
+        <li><a href="{{ '/builds/' | relative_url }}">Playtest Build History</a></li>
+        <li><a href="{{ '/roadmap/' | relative_url }}">Rock Strata Roadmap</a></li>
+        <li><a href="{{ '/art/' | relative_url }}">Hand-made Art Tracker</a></li>
+      </ul>
+    </div>
+
+    {% if has_social_links %}
+      <div class="footer-col">
+        <h2 class="footer-heading">Elsewhere</h2>
+        <ul class="social-button-list">
+          {% if site.steam_url and site.steam_url != "" %}
+            <li><a class="btn-journal btn-small" href="{{ site.steam_url | escape }}" rel="noopener noreferrer">Steam Page</a></li>
+          {% endif %}
+          {% if site.discord_url and site.discord_url != "" %}
+            <li><a class="btn-journal btn-small" href="{{ site.discord_url | escape }}" rel="noopener noreferrer">Discord</a></li>
+          {% endif %}
+          {% if site.youtube_url and site.youtube_url != "" %}
+            <li><a class="btn-journal btn-small" href="{{ site.youtube_url | escape }}" rel="noopener noreferrer">YouTube</a></li>
+          {% endif %}
+          {% if site.tiktok_url and site.tiktok_url != "" %}
+            <li><a class="btn-journal btn-small" href="{{ site.tiktok_url | escape }}" rel="noopener noreferrer">TikTok</a></li>
+          {% endif %}
+          {% if site.instagram_url and site.instagram_url != "" %}
+            <li><a class="btn-journal btn-small" href="{{ site.instagram_url | escape }}" rel="noopener noreferrer">Instagram</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="footer-bottom">
+    <span>Logged by hand in the {{ site.title | escape }} field journal.</span>
+    {% if site.current_version and site.current_version != "" %}
+      <span>Latest build: v{{ site.current_version | escape }} ({{ site.current_version_date | escape }})</span>
+    {% endif %}
+  </div>
+</footer>

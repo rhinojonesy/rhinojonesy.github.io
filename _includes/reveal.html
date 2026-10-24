@@ -1,0 +1,46 @@
+{% comment %}
+  "Fresh from the dig": a screenshot under a layer of dirt that you brush away,
+  like the brushing close-up in the game. It uses reveal_image and
+  reveal_caption from _config.yml, or the first screenshot in the gallery.
+{% endcomment %}
+{% assign reveal_src = site.reveal_image %}
+{% assign reveal_text = site.reveal_caption %}
+{% if reveal_src == nil or reveal_src == "" %}
+  {% for item in site.data.gallery.items %}
+    {% if item.image and item.image != "" %}
+      {% assign reveal_src = item.image %}
+      {% assign reveal_text = item.caption %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if reveal_src and reveal_src != "" %}
+<section class="paper-panel section-panel reveal-panel">
+  <div class="section-heading-row">
+    <div>
+      <span class="section-kicker">Fresh from the dig</span>
+      <h2 class="section-title">Brush away the dirt</h2>
+    </div>
+  </div>
+
+  <p class="page-intro reveal-intro">Drag across the dirt (or swipe on a phone) to uncover a screenshot from the latest build.</p>
+
+  <div class="reveal" id="reveal">
+    <img class="reveal-img" src="{{ reveal_src | relative_url }}" alt="{{ reveal_text | default: 'A screenshot from the latest build' | escape }}" loading="lazy">
+    <canvas class="reveal-dirt" id="reveal-dirt" aria-hidden="true"></canvas>
+    <span class="reveal-hint" id="reveal-hint" aria-hidden="true" hidden>Brush me!</span>
+  </div>
+
+  <div class="reveal-footer">
+    <p class="reveal-caption" id="reveal-caption" hidden>
+      <span class="grade-pill grade-pristine">Uncovered</span>
+      {{ reveal_text | escape }}
+    </p>
+    <div class="reveal-buttons">
+      <button type="button" class="btn-journal btn-small" id="reveal-all" hidden>Reveal it all</button>
+      <button type="button" class="btn-journal btn-small" id="reveal-reset" hidden>Bury it again</button>
+    </div>
+  </div>
+</section>
+{% endif %}

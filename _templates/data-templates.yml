@@ -1,0 +1,62 @@
+# ==============================================================================
+# COPY-AND-PASTE TEMPLATES FOR DATA FILES (_data/)
+# ==============================================================================
+# IMPORTANT YAML RULES FOR BEGINNERS:
+# 1. Use spaces, NEVER the Tab key, for indentation (2 spaces per level).
+# 2. Always wrap text in double quotes ("")! If your sentence has a colon (:)
+#    in it and you forget the quotes, YAML gets confused and GitHub Pages will
+#    send you an email saying the build failed (your old site stays live while
+#    you fix it).
+# 3. Every list item starts with a hyphen and a space: "- "
+
+
+# ------------------------------------------------------------------------------
+# 1. NEW ROADMAP ITEM (paste into _data/roadmap.yml under "items:")
+# ------------------------------------------------------------------------------
+# status must be one of: planned, digging, done
+# percent is optional (a number from 0 to 100, no % sign).
+
+  - title: "Name of the feature or milestone"
+    line: "One short sentence explaining what it adds to the game."
+    status: planned
+    percent: 25
+
+
+# ------------------------------------------------------------------------------
+# 2. NEW PLAYTEST BUILD (paste at the TOP of _data/builds.yml under "items:")
+# ------------------------------------------------------------------------------
+
+  - version: "0.18.0"
+    date: "02 Nov 2026"
+    summary: "A short one-line summary of this playtest build."
+    highlights:
+      - "First highlight in this build."
+      - "Second highlight in this build."
+      - "Third highlight in this build."
+
+
+# ------------------------------------------------------------------------------
+# 3. ART PROGRESS CATEGORY (in _data/art_progress.yml under "categories:")
+# ------------------------------------------------------------------------------
+# Just edit the "replaced" and "total" numbers on the existing categories,
+# or paste a new category block like this:
+
+  - name: "Category name"
+    replaced: 5
+    total: 20
+    note: "Short note about what assets belong in this category."
+
+
+# ------------------------------------------------------------------------------
+# 4. NEW GALLERY ITEM (paste at the TOP of _data/gallery.yml under "items:")
+# ------------------------------------------------------------------------------
+
+  # Option A: A screenshot you uploaded to assets/img/
+  - image: "assets/img/my-new-screenshot.png"
+    caption: "Short caption explaining what is shown in the screenshot."
+    date: "02 Nov 2026"
+
+  # Option B: A YouTube, TikTok or Instagram video link
+  - video_url: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+    caption: "Short caption for the video clip."
+    date: "02 Nov 2026"
